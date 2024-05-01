@@ -1,0 +1,65 @@
+1 Задание
+
+docker-commands-log git:(master) ✗ docker pull busybox
+Using default tag: latest
+latest: Pulling from library/busybox
+c34182c7a03d: Pull complete
+Digest: sha256:6776a33c72b3af7582a5b301e3a08186f2c21a3409f0d2b52dfddbdbe24a5b04
+Status: Downloaded newer image for busybox:latest
+docker.io/library/busybox:latest
+
+What's Next?
+  View a summary of image vulnerabilities and recommendations → docker scout quickview busybox
+➜  docker-commands-log git:(master) ✗ docker images
+REPOSITORY   TAG       IMAGE ID       CREATED         SIZE
+busybox      latest    23d6e6de0b63   11 months ago   4.04MB
+
+ docker-commands-log git:(master) ✗ docker run --name pinger busybox ping -c 7 netology.ru
+
+PING netology.ru (104.22.41.171): 56 data bytes
+64 bytes from 104.22.41.171: seq=0 ttl=63 time=49.896 ms
+64 bytes from 104.22.41.171: seq=1 ttl=63 time=52.883 ms
+64 bytes from 104.22.41.171: seq=2 ttl=63 time=54.717 ms
+64 bytes from 104.22.41.171: seq=3 ttl=63 time=51.791 ms
+64 bytes from 104.22.41.171: seq=4 ttl=63 time=50.061 ms
+64 bytes from 104.22.41.171: seq=5 ttl=63 time=51.076 ms
+64 bytes from 104.22.41.171: seq=6 ttl=63 time=54.900 ms
+
+--- netology.ru ping statistics ---
+7 packets transmitted, 7 packets received, 0% packet loss
+round-trip min/avg/max = 49.896/52.189/54.900 ms
+
+ docker-commands-log git:(master) ✗ docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+➜  docker-commands-log git:(master) ✗ docker ps -a
+CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS                      PORTS     NAMES
+b321606227ac   busybox   "ping -c 7 netology.…"   48 seconds ago   Exited (0) 41 seconds ago             pinger
+
+ docker-commands-log git:(master) ✗ docker logs -f -t pinger
+2024-05-01T13:33:21.939762221Z PING netology.ru (104.22.41.171): 56 data bytes
+2024-05-01T13:33:21.939791638Z 64 bytes from 104.22.41.171: seq=0 ttl=63 time=49.896 ms
+2024-05-01T13:33:22.944463264Z 64 bytes from 104.22.41.171: seq=1 ttl=63 time=52.883 ms
+2024-05-01T13:33:23.946979500Z 64 bytes from 104.22.41.171: seq=2 ttl=63 time=54.717 ms
+2024-05-01T13:33:24.945747250Z 64 bytes from 104.22.41.171: seq=3 ttl=63 time=51.791 ms
+2024-05-01T13:33:25.946418834Z 64 bytes from 104.22.41.171: seq=4 ttl=63 time=50.061 ms
+2024-05-01T13:33:26.953264293Z 64 bytes from 104.22.41.171: seq=5 ttl=63 time=51.076 ms
+2024-05-01T13:33:27.960302168Z 64 bytes from 104.22.41.171: seq=6 ttl=63 time=54.900 ms
+2024-05-01T13:33:27.960391377Z
+2024-05-01T13:33:27.960397168Z --- netology.ru ping statistics ---
+2024-05-01T13:33:27.960402877Z 7 packets transmitted, 7 packets received, 0% packet loss
+2024-05-01T13:33:27.960407460Z round-trip min/avg/max = 49.896/52.189/54.900 ms
+
+Команда ping 1 раз, общее количество запросов 7.
+
+➜  docker-commands-log git:(master) ✗ docker rm pinger
+pinger
+
+ docker-commands-log git:(master) ✗ docker rmi busybox
+Untagged: busybox:latest
+Untagged: busybox@sha256:6776a33c72b3af7582a5b301e3a08186f2c21a3409f0d2b52dfddbdbe24a5b04
+Deleted: sha256:23d6e6de0b63623e44a1ec59746682c77f197702ae77264eb287fa5119256f8a
+Deleted: sha256:4712e14e7e366854795a6664128e48cf7ad6199328abd09caadde8f5f3c0aa06
+
+
+
+
